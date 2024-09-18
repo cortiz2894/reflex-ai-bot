@@ -114,7 +114,7 @@ export default function Chat() {
 
   return (
     <div className='w-3/4 h-3/4 gap-4  flex rounded-xl overflow-hidden bg-backgroundDarker border border-[#333333] p-3'>
-      <div className='w-1/3 flex min-h-16 flex-col'>
+      <div className='w-1/3 flex min-h-16 flex-col rounded-lg overflow-hidden'>
         <div className='h-[10%] w-ful p-4 bg-secondary flex items-center justify-between'>
           <p className='text-lg font-semibold text-white'>Conversations</p>
           <Button
@@ -133,36 +133,38 @@ export default function Chat() {
           </div>
         </div>
       </div>
-      <div className='w-2/3 flex min-h-16 flex-col'>
-        <div className='w-full h-[10%] p-4 bg-secondary flex items-center'>
-          <p className='text-lg font-semibold text-white'>Chat</p>
-        </div>
-        <div className='flex h-[90%] gap-4 w-full'>
+      <div className='w-2/3 flex min-h-16 flex-col rounded-lg overflow-hidden'>
           {!openConversation ? (
             <EmptyState action={() => addConversation()} />
           ) : (
-            <div className='w-full p-4 bg-white backgroundPattern flex flex-col h-full relative'>
-              <div 
-                className='overflow-y-auto h-full' 
-                ref={chatContainerRef}
-              >
-                {messages.map((message) => {
-
-                  const createdAt = new Date(message.createdAt);
-                  const today = new Date();
-                  const displayDate = isSameDay(createdAt, today)
-                    ? format(createdAt, "hh:mm:ss")  
-                    : format(createdAt, "MM/dd/yyyy : hh:mm:ss"); 
-                    
-                  return(
-                    <Message key={message.id} date={displayDate} message={message}/>
-                  )})}
-                <TypingIndicator typingRef={typingRef}/>
+            <>
+              <div className='w-full h-[10%] p-4 bg-secondary flex items-center'>
+                <p className='text-lg font-semibold text-white'>Chat</p>
               </div>
-              <FormInput message={newMessage} setMessage={setNewMessage} submit={sendMessage} />
-            </div>
+              <div className='flex h-[90%] gap-4 w-full'>
+                <div className='w-full p-4 bg-white backgroundPattern flex flex-col h-full relative'>
+                  <div 
+                    className='overflow-y-auto h-full' 
+                    ref={chatContainerRef}
+                  >
+                    {messages.map((message) => {
+
+                      const createdAt = new Date(message.createdAt);
+                      const today = new Date();
+                      const displayDate = isSameDay(createdAt, today)
+                        ? format(createdAt, "hh:mm:ss")  
+                        : format(createdAt, "MM/dd/yyyy : hh:mm:ss"); 
+                        
+                      return(
+                        <Message key={message.id} date={displayDate} message={message}/>
+                      )})}
+                    <TypingIndicator typingRef={typingRef}/>
+                  </div>
+                  <FormInput message={newMessage} setMessage={setNewMessage} submit={sendMessage} />
+                </div>
+              </div>
+            </>
           )}
-        </div>
       </div>
     </div>
   );
