@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chat Application
+
+This is a real-time chat application where users can interact with a system bot. The bot responds with predefined messages, simulating a conversation. Users can create new chat conversations, send messages, and receive responses from the bot. The application also stores chat history for each conversation, and the chat system is built to support multiple conversations.
+
+## Features
+
+- Real-time messaging with Socket.IO
+- System bot with predefined responses
+- Multiple conversation management
+- Message history stored in the database
+
+## Technologies Used
+
+- **React**: Frontend framework for building the user interface.
+- **Next.js**: React framework for server-side rendering and API routes.
+- **Socket.IO**: For real-time communication between the client and server.
+- **Prisma**: ORM for database interaction.
+- **SQLite**: Database used for storing chat messages and conversations.
+- **TypeScript**: Strongly-typed programming language that builds on JavaScript.
+- **GSAP**: For animations in the user interface.
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to set up and run the project locally.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You need to have the following software installed on your machine:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Node.js](https://nodejs.org/) (version 16 or higher)
+- [npm](https://www.npmjs.com/) (Node package manager)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Installation
 
-## Learn More
+1. **Clone the repository:**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/cortiz2894/reflex-ai-bot.git
+   cd reflex-ai-bot
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install the dependencies:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```
+   npm install
+   ```
 
-## Deploy on Vercel
+3. **Set up the environment variables:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create a .env file in the root of the project and add the following environment variables:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```
+   DATABASE_URL="file:./dev.db"
+   ```
+
+4. **Run Prisma migrations:**
+
+Initialize the database and run the migrations.
+
+   ```
+   npx prisma migrate dev
+   ```
+
+5. **Start the development server:**
+
+This command starts both the Next.js API and the Socket.IO server.
+
+   ```
+   npm run dev
+   ```
+
+
+## Usage
+
+- Visit http://localhost:3000 to access the chat application.
+- New conversations can be started by clicking the "New" button.
+- Type a message in the chat interface, and the system bot will respond automatically.
+- The chat history will be saved and can be viewed when revisiting conversations.
+
