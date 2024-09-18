@@ -1,27 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #898989;
+  --color-secondary: #333333;
+  --color-green-reflex: #32bf6e;
+  --background: #191919;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  color: var(--foreground);
+  color: var(--color-primary);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "PT Sans", sans-serif;
+  overflow: hidden;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+body::before {
+  content: '';
+  position: absolute;
+  right: -5vw;
+  bottom: -5vw;
+  width: 25vw;
+  border-radius: 50%;
+  height: 25vw;
+  background-color: var(--color-green-reflex);
+  filter: blur(10rem);
+  z-index: -1; 
+  opacity: 0.5;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  left: -25vw;
+  top: -15vw;
+  width: 30vw;
+  border-radius: 50%;
+  height: 80vw;
+  background-color: var(--color-green-reflex);
+  filter: blur(7rem);
+  z-index: -1; 
+  opacity: 0.2;
+  transform: rotate(45deg);
+}
+
+.backgroundPattern {
+  background: linear-gradient(45deg, #242424 10%,transparent 10%,transparent 90%,#242424 90%),linear-gradient(135deg, transparent 40%, #24242480 40%, #24242480 60%, transparent 0),linear-gradient(45deg, transparent 40%, #242424 40%, #242424 60%, transparent 0);
+  background-size: 2em 2em;
+  background-color: #222;
+  opacity: 1
+}
+
+.typing-dot {
+  float: left;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  background: #8d8c91;
+  border-radius: 50%;
+  opacity: 0;
+  animation: loadingFade 1s infinite;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loadingFade {
+  0% {
+    opacity: 0;
   }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+  background-color: var(--color-green-reflex);
+  transition: width 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.button:hover::before {
+  width: 100%;
+}
+
+.button:hover > div {
+  transform: translateX(0.35em);
+}
+
+.button > div {
+  transform: translateX(-1.4em);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
